@@ -484,6 +484,7 @@ func processQueueNext(q workqueue.RateLimitingInterface, jmsClient jsmClientFunc
 
 	if q.NumRequeues(item) < maxQueueRetries {
 		// Failed to process item, try again.
+		time.Sleep(5 * 1000000000)
 		q.AddRateLimited(item)
 		return
 	}

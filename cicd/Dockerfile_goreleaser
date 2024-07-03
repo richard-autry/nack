@@ -22,9 +22,9 @@ RUN <<EOT
   cd /go/src
   FLAGS="--clean"
   if [ -z ${GITHUB_TOKEN} ]; then
-    if [ ${CI} != "true" ]; then FLAGS="${FLAGS} --skip-validate --single-target"; fi
-    goreleaser build ${FLAGS}
+    if [ ${CI} != "true" ]; then FLAGS="${FLAGS} --single-target"; fi
+    goreleaser build ${FLAGS} --snapshot
   else
-    goreleaser release ${FLAGS}
+    goreleaser release ${FLAGS} --snapshot
   fi
 EOT
